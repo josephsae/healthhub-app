@@ -1,0 +1,57 @@
+services:
+  db:
+    image: postgres:16
+    container_name: healthcare-db
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    ports:
+      - "${DB_HOST_PORT}:5432" 
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - healthcare-network
+
+  backend:
+    build:
+      context: ./backend
+    container_name: healthcare-api
+    restart: always
+    ports:
+      - "${API_HOST_PORT}:${API_CONTAINER_PORT}"
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_HOST_PORT}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_DATABASE: ${DB_DATABASE}
+      PORT: ${API_CONTAINER_PORT}
+      NODE_ENV: ${ENV}
+      JWT_SECRET: ${API_JWT_SECRET}
+    depends_on:
+      - db
+    networks:
+      - healthcare-network
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: healthcare-frontend
+    restart: always
+    ports:
+      - "${APP_HOST_PORT}:3000"
+    environment:
+      REACT_APP_API_URL: ${API_URL}
+    depends_on:
+      - backend
+    networks:
+      - healthcare-network
+
+networks:
+  healthcare-network:
+    driver: bridge
+
+volumes:
+  db-data:

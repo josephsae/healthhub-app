@@ -1,0 +1,4 @@
+export enum AuthorizationType {
+  PROCEDURE = "PROCEDURE",
+  MEDICATION_REQUEST = "MEDICATION_REQUEST",
+}
