@@ -1,0 +1,95 @@
+.appointment-form-container {
+  background-color: #ffffff;
+  padding: 30px;
+  margin: 20px auto;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.appointment-form-title {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #0077b6;
+  font-weight: bold;
+}
+
+.appointment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.appointment-input {
+  padding: 12px;
+  font-size: 1em;
+  border: 2px solid #0077b6;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.appointment-input:focus {
+  border-color: #0056a3;
+}
+
+.appointment-select {
+  padding: 12px;
+  font-size: 1em;
+  border: 2px solid #0077b6;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.appointment-select:focus {
+  border-color: #0056a3;
+}
+
+.appointment-button {
+  background-color: #0077b6;
+  color: #ffffff;
+  padding: 12px 20px;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.appointment-button:hover {
+  background-color: #0056a3;
+}
+
+.cancel-button {
+  background-color: #ff4d4d;
+  margin-top: 10px;
+}
+
+.cancel-button:hover {
+  background-color: #cc0000;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.back-home-button {
+  background-color: #0077b6;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  margin-bottom: 20px;
+  transition: background-color 0.3s;
+}
+
+.back-home-button:hover {
+  background-color: #0056a3;
+}
