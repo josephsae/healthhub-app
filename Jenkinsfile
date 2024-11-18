@@ -3,14 +3,14 @@ pipeline {
 
     environment {
         DB_USERNAME = 'your_db_username'
-        DB_PASSWORD = credentials('DB_PASSWORD')
+        DB_PASSWORD = ${DB_PASSWORD}
         DB_DATABASE = 'your_database_name'
         DB_HOST_PORT = '5432'
         API_HOST_PORT = '4000'
         API_CONTAINER_PORT = '4000'
         APP_HOST_PORT = '3000'
         ENV = 'staging'
-        API_JWT_SECRET = credentials('API_JWT_SECRET')
+        API_JWT_SECRET = ${DB_PASSWORD}
         API_URL = 'http://localhost:4000'
         DB_HOST = 'db'
     }
