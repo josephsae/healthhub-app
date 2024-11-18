@@ -2,15 +2,15 @@ pipeline {
     agent any
 
     environment {
-        DB_USERNAME = 'your_db_username'
-        DB_PASSWORD = 1lNR2y84HYyEftDx0Ha5ZuMtyV8Puyrv
-        DB_DATABASE = 'your_database_name'
+        DB_USERNAME = 'healtcare_db_user'
+        DB_PASSWORD = '1lNR2y84HYyEftDx0Ha5ZuMtyV8Puyrv'
+        DB_DATABASE = 'healthub_db'
         DB_HOST_PORT = '5432'
         API_HOST_PORT = '4000'
         API_CONTAINER_PORT = '4000'
         APP_HOST_PORT = '3000'
         ENV = 'staging'
-        API_JWT_SECRET = 123password
+        API_JWT_SECRET = '123password'
         API_URL = 'http://localhost:4000'
         DB_HOST = 'db'
     }
@@ -46,6 +46,8 @@ pipeline {
 
         stage('Validate Deployment') {
             steps {
+                echo 'Waiting for backend to initialize...'
+                sh 'sleep 10'
                 echo 'Validating services...'
                 sh 'curl -f ${API_URL}/ping || exit 1'
             }
