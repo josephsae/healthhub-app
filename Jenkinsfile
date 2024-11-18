@@ -25,21 +25,21 @@ pipeline {
         stage('Build Docker Services') {
             steps {
                 echo 'Building Docker services...'
-                sh 'docker-compose -f docker-compose.yml build'
+                sh '/usr/local/bin/docker-compose -f docker-compose.yml build'
             }
         }
 
         stage('Run Backend Tests') {
             steps {
                 echo 'Running backend tests...'
-                sh 'docker-compose run --rm backend npm test'
+                sh '/usr/local/bin/docker-compose -f docker-compose run --rm backend npm test'
             }
         }
 
         stage('Deploy Services') {
             steps {
                 echo 'Deploying services...'
-                sh 'docker-compose -f docker-compose.yml up -d'
+                sh '/usr/local/bin/docker-compose -f docker-compose -f docker-compose.yml up -d'
             }
         }
     }
