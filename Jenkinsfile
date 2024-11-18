@@ -12,7 +12,7 @@ pipeline {
         ENV = 'staging'
         API_JWT_SECRET = 'your_secret_key'
         API_URL = 'http://localhost:4000'
-        DB_HOST = 'db'                                  
+        DB_HOST = 'db'
     }
 
     stages {
@@ -22,7 +22,7 @@ pipeline {
                 git branch:'main', url: 'https://github.com/josephsae/healthhub-app.git'
             }
         }
-
+        
         stage('Build Docker Services') {
             steps {
                 echo 'Building Docker services...'
@@ -33,14 +33,14 @@ pipeline {
         stage('Run Backend Tests') {
             steps {
                 echo 'Running backend tests...'
-                sh '/usr/local/bin/docker-compose -f docker-compose run --rm backend npm test'
+                sh '/usr/local/bin/docker-compose -f docker-compose.yml run --rm backend npm test'
             }
         }
 
         stage('Deploy Services') {
             steps {
                 echo 'Deploying services...'
-                sh '/usr/local/bin/docker-compose -f docker-compose -f docker-compose.yml up -d'
+                sh '/usr/local/bin/docker-compose -f docker-compose.yml -f docker-compose.yml up -d'
             }
         }
     }
@@ -48,7 +48,7 @@ pipeline {
     post {
         always {
             echo 'Cleaning up...'
-            sh 'docker-compose down'
+            sh '/usr/local/bin/docker-compose down'
         }
     }
 }
