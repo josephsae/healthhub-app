@@ -18,7 +18,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 echo 'Cloning repository...'
-                git 'https://github.com/josephsae/healthhub-app'
+                git 'https://github.com/josephsae/healthhub-app.git'
             }
         }
 
