@@ -31,7 +31,7 @@ pipeline {
         stage('Run Backend Tests') {
             steps {
                 echo 'Running backend tests...'
-                sh '/usr/local/bin/docker-compose run --rm backend npm test -- --reporters=junit --outputFile=tests/results.xml'
+                sh '/usr/local/bin/docker-compose run --rm backend npm test'
             }
         }
 
