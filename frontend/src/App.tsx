@@ -13,11 +13,10 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
 
-  // Cargar el estado de autenticación al montar el componente
   useEffect(() => {
     const token = localStorage.getItem("token");
     setIsAuthenticated(!!token);
-    setLoading(false); // Terminamos de cargar el estado de autenticación
+    setLoading(false);
   }, []);
 
   const handleLogout = () => {
@@ -25,7 +24,6 @@ function App() {
     setIsAuthenticated(false);
   };
 
-  // Si todavía estamos cargando, muestra un loader o texto de "Cargando..."
   if (loading) return <div>Cargando...</div>;
 
   return (

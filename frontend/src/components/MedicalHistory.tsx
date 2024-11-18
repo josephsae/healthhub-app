@@ -1,4 +1,3 @@
-// src/components/MedicalHistory.tsx
 import React, { useEffect, useState } from "react";
 import { fetchMedicalRecords, downloadMedicalHistory } from "../services/medicalHistoryService";
 import { useNavigate } from "react-router-dom";
