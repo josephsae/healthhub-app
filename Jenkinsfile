@@ -9,9 +9,10 @@ pipeline {
         API_HOST_PORT = '4000'
         API_CONTAINER_PORT = '4000'
         APP_HOST_PORT = '3000'
-        ENV = 'production'
+        ENV = 'staging'
         API_JWT_SECRET = 'your_secret_key'
         API_URL = 'http://localhost:4000'
+        DB_HOST = 'db'                                  
     }
 
     stages {
