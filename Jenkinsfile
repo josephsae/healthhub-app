@@ -28,13 +28,6 @@ pipeline {
             }
         }
 
-        stage('Validate Deployment') {
-            steps {
-                echo 'Validating services...'
-                sh 'curl -f ${API_URL}/ping || exit 1'
-            }
-        }
-
         stage('Run Backend Tests') {
             steps {
                 echo 'Running backend tests...'
@@ -48,6 +41,14 @@ pipeline {
                 sh '/usr/local/bin/docker-compose -f docker-compose.yml -f docker-compose.yml up -d'
             }
         }
+
+        stage('Validate Deployment') {
+            steps {
+                echo 'Validating services...'
+                sh 'curl -f ${API_URL}/ping || exit 1'
+            }
+        }
+
     }
 
     post {
