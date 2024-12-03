@@ -41,18 +41,17 @@ jobs:
         run: |
           docker-compose -f docker-compose.yml build
 
-      - name: Run Backend Tests
-        run: |
-          docker-compose run --rm backend npm test
-
-      - name: Generate Coverage Report
+      - name: Run Backend Tests with Coverage
         run: |
           docker-compose run --rm backend npm run coverage
 
+      - name: Debug Coverage Directory
+        run: |
+          ls -R backend/coverage || echo "Coverage directory not found!"
+
       - name: Upload Coverage to Codecov
         run: |
-          npm install -g codecov
-          npx codecov --file=coverage/lcov.info --disable=gcov
+          npx codecov --file=backend/coverage/lcov.info --disable=gcov
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
@@ -65,12 +64,3 @@ jobs:
           echo 'Waiting for backend to initialize...'
           sleep 10
           curl -f http://localhost:4000/ping || exit 1
-
-  notify:
-    needs: build-and-test
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Send Notification
-        run: |
-          echo "Job finished with status: ${{ job.status }}"
