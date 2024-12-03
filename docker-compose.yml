@@ -17,6 +17,10 @@ services:
   backend:
     build:
       context: ./backend
+    volumes:
+      - ./backend/coverage:/usr/src/app/coverage
+    working_dir: /usr/src/app
+    command: npm run coverage
     container_name: healthcare-api
     restart: always
     ports:
