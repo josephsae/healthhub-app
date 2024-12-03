@@ -39,6 +39,7 @@ jobs:
 
       - name: Build Docker Services
         run: |
+          docker-compose down
           docker-compose -f docker-compose.yml build
 
       - name: Run Backend Tests with Coverage
