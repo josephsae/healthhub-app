@@ -48,11 +48,11 @@ jobs:
 
       - name: Debug Coverage Directory
         run: |
-          ls -R backend/coverage || echo "Coverage directory not found!"
+          ls -R coverage || echo "Coverage directory not found!"
 
       - name: Upload Coverage to Codecov
         run: |
-          npx codecov --file=backend/coverage/lcov.info --disable=gcov
+          npx codecov --file=coverage/lcov.info --disable=gcov
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
