@@ -41,9 +41,11 @@ jobs:
         run: |
           docker-compose run --rm backend npm run coverage
 
-      - name: Copy Coverage to Host
+      - name: Create Coverage Directory
+        run: mkdir -p backend/coverage
+
+      - name: Copy Coverage File
         run: |
-          mkdir -p backend/coverage
           docker cp $(docker-compose ps -q backend):/usr/src/app/coverage/lcov.info backend/coverage/lcov.info
 
       - name: Debug Coverage Directory
