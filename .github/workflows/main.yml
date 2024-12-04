@@ -46,14 +46,14 @@ jobs:
       - name: Run Backend Tests with Coverage
         run: |
           docker-compose exec -T backend npm run coverage
-          
+
       - name: Debug Coverage Directory
         run: |
-          docker-compose exec backend ls -R /usr/src/app/coverage || echo "Coverage directory not found!"
+          docker-compose exec -T backend ls -R /usr/src/app/coverage || echo "Coverage directory not found!"
 
       - name: Upload Coverage to Codecov
         run: |
-          docker-compose exec backend npx codecov --file=/usr/src/app/coverage/lcov.info --disable=gcov
+          docker-compose exec -T backend npx codecov --file=/usr/src/app/coverage/lcov.info --disable=gcov
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
