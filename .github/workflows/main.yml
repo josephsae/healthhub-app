@@ -37,8 +37,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y docker-compose
 
+      - name: Build Docker Services
+        run: docker-compose build
+
       - name: Run Backend Tests with Coverage
         run: |
+          docker-compose -f docker-compose.yml up -d
           docker-compose exec backend npm run coverage
 
       - name: Debug Coverage Directory
@@ -50,10 +54,6 @@ jobs:
           docker-compose exec backend npx codecov --file=/usr/src/app/coverage/lcov.info --disable=gcov
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-
-      - name: Deploy Services
-        run: |
-          docker-compose -f docker-compose.yml up -d
 
       - name: Validate Deployment
         run: |
