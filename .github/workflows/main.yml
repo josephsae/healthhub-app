@@ -51,9 +51,13 @@ jobs:
         run: |
           docker-compose exec -T backend ls -R /usr/src/app/coverage || echo "Coverage directory not found!"
 
+      - name: Copy Coverage File to Host
+        run: |
+          docker cp $(docker-compose ps -q backend):/usr/src/app/coverage/lcov.info ./coverage/lcov.info
+
       - name: Upload Coverage to Codecov
         run: |
-          docker-compose exec -T backend npx codecov --file=/usr/src/app/coverage/lcov.info --disable=gcov
+          npx codecov --file=./coverage/lcov.info --disable=gcov
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
