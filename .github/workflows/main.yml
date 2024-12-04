@@ -39,7 +39,7 @@ jobs:
 
       - name: Run Backend Tests with Coverage
         run: |
-          docker-compose run --rm backend npm run coverage
+          docker-compose exec backend npm run coverage
 
       - name: Debug Coverage Directory
         run: |
